@@ -8,7 +8,9 @@ header {
     display: flex;
     border: .25em solid lightblue;
     margin:  0 auto;
-    padding: 3em 3em;
+    padding: 1em 3em;
+    font-size: 1.5em;
+    justify-content: space-between;
 }
 
 section{
@@ -27,10 +29,4 @@ footer {
 
 
 /* Class Selectors */
-.header_container {
-    justify-content: space-between;
-    margin: 0 auto;
-    border: .25em solid black;
-}
-
 
