@@ -1,0 +1,36 @@
+/* Universial selectors */
+*{
+    font-family: 'Courier New', Courier, monospace;
+}
+
+/* Element Selectors */
+header {
+    display: flex;
+    border: .25em solid lightblue;
+    margin:  0 auto;
+    padding: 3em 3em;
+}
+
+section{
+    display: flex;
+    border: .25em solid lightpink;
+    margin:  0 auto;
+    padding: 15em 3em;
+}
+
+footer {
+    display: flex;
+    border: .25em solid lightgrey;
+    margin:  0 auto;
+    padding: 3em 3em;
+}
+
+
+/* Class Selectors */
+.header_container {
+    justify-content: space-between;
+    margin: 0 auto;
+    border: .25em solid black;
+}
+
+
