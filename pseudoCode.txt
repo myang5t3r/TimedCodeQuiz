@@ -1,0 +1,15 @@
+1) Wireframe layout of html
+
+2) header section  - make two containers
+    - High score button - display high scores in section when you click the button
+    - Time counter - use call back function - example at WebAPI 09
+
+3) Main section - two parts
+    -questions displayed in upper part, use array/object to store questions and loop
+    though questions
+    - Lower part will be the multiple choice buttons for the answers to the 
+    questions - answers can be stored in same object as question
+     add boolean to object to identify is the user selected the correct answers
+
+ 4) Footer sections - Lets use this section to display if the user selected the correct answers
+    -if answers is correct display correct , else display incorrect     
