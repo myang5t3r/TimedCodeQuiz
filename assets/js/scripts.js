@@ -17,7 +17,7 @@ function setTime() {
 
 // setTime()
 
-// Lets code the question and answers 
+// Lets code the question and answers into an object
 var myArry = [
     {question: "What operator can you use to find the data type of a variable?",
     answer1:["object.property", false],
@@ -48,6 +48,10 @@ var ansBtn1 = document.querySelector("#btn1");
 var ansBtn2 = document.querySelector("#btn2");
 var ansBtn3 = document.querySelector("#btn3");
 var ansBtn4 = document.querySelector("#btn4");
+var ansBtn = document.querySelectorAll(".ansBtn")
+var finalScore = 0;
+var footTxt1 = document.querySelector(".foot_txt1");
+var footTxt2 = document.querySelector(".foot_txt2");
 
 // Event listener for starting quiz
 cardSwitcher.addEventListener("click", function(){
@@ -64,4 +68,53 @@ ansBtn2.textContent = `2. ${myArry[0].answer2[0]}`;
 ansBtn3.textContent = `3. ${myArry[0].answer3[0]}`;
 ansBtn4.textContent = `4. ${myArry[0].answer4[0]}`;
 
+// Event listener for user selecting a answer
+ansBtn1.addEventListener("click", function(){
+    if (myArry[0].answer1[1]===false){
+        footTxt1.setAttribute("style", "display:flex;");
+        console.log(false);
+    }else{
+        console.log(true);
+        footTxt2.setAttribute("style", "display:flex;");
 
+        finalScore++;
+    }  
+})
+ansBtn2.addEventListener("click", function(){
+    if (myArry[0].answer2[1]===false){
+        console.log(false);
+        footTxt1.setAttribute("style", "display:flex;");
+    }else{
+        console.log(true);
+        footTxt2.setAttribute("style", "display:flex;");
+        finalScore++;
+    }  
+})
+ansBtn3.addEventListener("click", function(){
+    if (myArry[0].answer3[1]===false){
+        console.log(false);
+        footTxt1.setAttribute("style", "display:flex;");
+    }else{
+        console.log(true);
+        footTxt2.setAttribute("style", "display:flex;");
+        finalScore++;
+    }  
+})
+ansBtn4.addEventListener("click", function(){
+    if (myArry[0].answer4[1]===false){
+        console.log(false);
+        footTxt1.setAttribute("style", "display:flex;");
+    }else{
+        console.log(true);
+        footTxt2.setAttribute("style", "display:flex;");
+        finalScore++;
+    }  
+})
+
+// console.log(ansBtn)
+// ansBtn.forEach(Element => {
+//     Element.addEventListener("click", function(){
+//         console.log("Button Pressed")
+//         console.log(Element)
+//     })
+// })

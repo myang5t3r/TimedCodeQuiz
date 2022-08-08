@@ -22,9 +22,10 @@ section{
 
 footer {
     display: flex;
-    border: .25em solid lightgrey;
-    margin:  0 auto;
-    padding: 3em 3em;
+    padding: 0 0;
+    flex-direction: column;
+    align-items: center;
+    
 }
 
 
@@ -94,4 +95,19 @@ footer {
     cursor: pointer;
     border-radius: .5em;
     background-color: lightblue;
+}
+
+.foot_txt1, .foot_txt2 {
+    font-size: 2em;
+    font-weight: bold;
+    color: lightgray;
+    padding-top: 2em;
+}
+
+.foot_txt1 {
+    display: none;
+}
+
+.foot_txt2 {
+    display: none;
 }
