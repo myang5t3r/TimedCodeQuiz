@@ -2,7 +2,7 @@
 
 2) header section  - make two containers
     - High score button - display high scores in section when you click the button
-    - Time counter - use call back function - example at WebAPI 09
+    - Time counter - use call back function - example at WebAPI 09 - 
 
 3) Main section - two parts
     -questions displayed in upper part, use array/object to store questions and loop
