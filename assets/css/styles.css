@@ -63,32 +63,33 @@ footer {
     background-color: lightblue;
 }
 
-.header_btn:hover, .start_btn:hover {
+.header_btn:hover, 
+.start_btn:hover,
+.ansBtn:hover {
     background-color: #d71f1f;
     color: white;
 }
 
 .questions {
-    border: .2em solid black;
+    display: none;
     padding: 2em 2em;
-    font-size: 1.5em;
+    font-size: 3em;
     font-weight: bolder;
 }
 
 .answers {
-    display: flex;
-    /* display: none; */
+    display: none;
     align-items: flex-start;
     flex-direction: column;
 
 }
 .ansBtn {
-    border: .2em solid black;
+    border: .1em solid black;
     text-align: left;
     padding: 10px 10px;
     width: 25em;
     text-decoration: none;
-    font-size: 16px;
+    font-size: 2em;
     margin: 10px 5px;
     cursor: pointer;
     border-radius: .5em;

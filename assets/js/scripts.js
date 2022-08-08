@@ -39,3 +39,29 @@ var myArry = [
     }
 ]
 
+// get elements for html
+var startCard = document.querySelector(".start_card")
+var qCard = document.querySelector(".questions");
+var ansCard = document.querySelector(".answers");
+var cardSwitcher = document.querySelector(".start_btn");
+var ansBtn1 = document.querySelector("#btn1");
+var ansBtn2 = document.querySelector("#btn2");
+var ansBtn3 = document.querySelector("#btn3");
+var ansBtn4 = document.querySelector("#btn4");
+
+// Event listener for starting quiz
+cardSwitcher.addEventListener("click", function(){
+    startCard.setAttribute("style", "display:none;")
+    qCard.setAttribute("style", "display:flex;")
+    ansCard.setAttribute("style", "display:flex;")
+    
+}) 
+
+// insert questions and answers to buttons from object
+qCard.textContent = myArry[0].question;
+ansBtn1.textContent = `1. ${myArry[0].answer1[0]}`;
+ansBtn2.textContent = `2. ${myArry[0].answer2[0]}`;
+ansBtn3.textContent = `3. ${myArry[0].answer3[0]}`;
+ansBtn4.textContent = `4. ${myArry[0].answer4[0]}`;
+
+
