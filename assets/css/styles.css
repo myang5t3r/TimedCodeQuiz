@@ -73,7 +73,7 @@ footer {
 
 .questions {
     display: none;
-    padding: 2em 2em;
+    padding: 2em 0em;
     font-size: 3em;
     font-weight: bolder;
 }
@@ -98,10 +98,10 @@ footer {
 }
 
 .foot_txt1, .foot_txt2 {
-    font-size: 2em;
+    font-size: 4em;
     font-weight: bold;
     color: lightgray;
-    padding-top: 2em;
+    padding-top: 1em;
 }
 
 .foot_txt1 {

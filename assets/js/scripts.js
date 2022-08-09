@@ -1,25 +1,27 @@
-// Timer code - make a function so we can show timer after user selects an answer
-//  variable to store time
-var timeLeft = 60;
-//  Use query selector to get element by class
+// Variable declarations 
+// get elements in html
+var startCard = document.querySelector(".start_card")
+var qCard = document.querySelector(".questions");
+var ansCard = document.querySelector(".answers");
+var cardSwitcher = document.querySelector(".start_btn");
+var ansBtn1 = document.querySelector("#btn1");
+var ansBtn2 = document.querySelector("#btn2");
+var ansBtn3 = document.querySelector("#btn3");
+var ansBtn4 = document.querySelector("#btn4");
+var footTxt1 = document.querySelector(".foot_txt1");
+var footTxt2 = document.querySelector(".foot_txt2");
 var timeEl = document.querySelector(".timer")
-// Use callback function 
-function setTime() {
-    var timerInterval = setInterval(function(){
-        timeLeft--;
-        timeEl.textContent = `Time:${timeLeft}`;
-        if(timeLeft === 0) {
-            clearInterval(timerInterval)
-            alert("Time is over")
-        }
-    }, 1000)
-}
 
-// setTime()
 
-// Lets code the question and answers into an object
+// global variables
+var finalScore = 0;
+var timeLeft = 60;
+var qIndex = 0;
+var popupTime = 1;  
+
+// Lets place the question and answers into an object
 var myArry = [
-    {question: "What operator can you use to find the data type of a variable?",
+    {question: ["What operator can you use to find the data type of a variable?"],
     answer1:["object.property", false],
     answer2:["this.object", false],
     answer3:["typeof", true],
@@ -37,84 +39,103 @@ var myArry = [
     answer3:["getElementById()", true],
     answer4:["setAttribute()", false]
     }
-]
+];
 
-// get elements for html
-var startCard = document.querySelector(".start_card")
-var qCard = document.querySelector(".questions");
-var ansCard = document.querySelector(".answers");
-var cardSwitcher = document.querySelector(".start_btn");
-var ansBtn1 = document.querySelector("#btn1");
-var ansBtn2 = document.querySelector("#btn2");
-var ansBtn3 = document.querySelector("#btn3");
-var ansBtn4 = document.querySelector("#btn4");
-var ansBtn = document.querySelectorAll(".ansBtn")
-var finalScore = 0;
-var footTxt1 = document.querySelector(".foot_txt1");
-var footTxt2 = document.querySelector(".foot_txt2");
+// Timer function  - we will call this after a answers is selected  
+function setTime() {
+    var timerInterval = setInterval(function(){
+        timeLeft--;
+        timeEl.textContent = `Time:${timeLeft}`;
+        if(timeLeft === 0) {
+            clearInterval(timerInterval)
+            alert("Time is over")
+        }
+    }, 1000)
+}
 
-// Event listener for starting quiz
+
+// Let create a function that loads the questions and answers
+// insert questions and answers to buttons from object
+function loadQnA(qIndex) {
+    qCard.textContent = myArry[qIndex].question;
+    ansBtn1.textContent = `1. ${myArry[qIndex].answer1[0]}`;
+    ansBtn2.textContent = `2. ${myArry[qIndex].answer2[0]}`;
+    ansBtn3.textContent = `3. ${myArry[qIndex].answer3[0]}`;
+    ansBtn4.textContent = `4. ${myArry[qIndex].answer4[0]}`;
+}
+
+// Function to show if answer was correct/incorrect
+function popResults(x) {
+    if (x === true){
+        footTxt2.setAttribute("style", "display:flex;");
+    } else {
+        footTxt1.setAttribute("style", "display:flex;");
+    };  
+    var popupTime = setInterval(function(){
+        popupTime--;
+        if(popupTime === 0) {
+            footTxt1.setAttribute("style", "display:none;");
+            footTxt1.setAttribute("style", "display:none;");  
+            clearInterval(popupTime)
+        }
+    }, 100)
+}
+
+// Event Handlers
+// Start Quiz Handler
 cardSwitcher.addEventListener("click", function(){
+    loadQnA(qIndex)
     startCard.setAttribute("style", "display:none;")
     qCard.setAttribute("style", "display:flex;")
-    ansCard.setAttribute("style", "display:flex;")
-    
+    ansCard.setAttribute("style", "display:flex;")   
 }) 
 
-// insert questions and answers to buttons from object
-qCard.textContent = myArry[0].question;
-ansBtn1.textContent = `1. ${myArry[0].answer1[0]}`;
-ansBtn2.textContent = `2. ${myArry[0].answer2[0]}`;
-ansBtn3.textContent = `3. ${myArry[0].answer3[0]}`;
-ansBtn4.textContent = `4. ${myArry[0].answer4[0]}`;
-
-// Event listener for user selecting a answer
+// Event handler selecting a answer
 ansBtn1.addEventListener("click", function(){
     if (myArry[0].answer1[1]===false){
-        footTxt1.setAttribute("style", "display:flex;");
-        console.log(false);
+        qIndex++
+        popResults(false)
+        loadQnA(qIndex)
     }else{
-        console.log(true);
-        footTxt2.setAttribute("style", "display:flex;");
-
         finalScore++;
+        qIndex++
+        popResults(true)
+        loadQnA(qIndex)
     }  
 })
 ansBtn2.addEventListener("click", function(){
     if (myArry[0].answer2[1]===false){
-        console.log(false);
-        footTxt1.setAttribute("style", "display:flex;");
+        qIndex++
+        popResults(false)
+        loadQnA(qIndex)
     }else{
-        console.log(true);
-        footTxt2.setAttribute("style", "display:flex;");
         finalScore++;
+        qIndex++
+        popResults(true)
+        loadQnA(qIndex)
     }  
 })
 ansBtn3.addEventListener("click", function(){
     if (myArry[0].answer3[1]===false){
-        console.log(false);
-        footTxt1.setAttribute("style", "display:flex;");
+        qIndex++
+        popResults(false)
+        loadQnA(qIndex)
     }else{
-        console.log(true);
-        footTxt2.setAttribute("style", "display:flex;");
         finalScore++;
+        qIndex++
+        popResults(true)
+        loadQnA(qIndex)
     }  
 })
 ansBtn4.addEventListener("click", function(){
     if (myArry[0].answer4[1]===false){
-        console.log(false);
-        footTxt1.setAttribute("style", "display:flex;");
+        qIndex++
+        popResults(false)
+        loadQnA(qIndex)
     }else{
-        console.log(true);
-        footTxt2.setAttribute("style", "display:flex;");
         finalScore++;
+        qIndex++
+        popResults(true)
+        loadQnA(qIndex)
     }  
 })
-
-// console.log(ansBtn)
-// ansBtn.forEach(Element => {
-//     Element.addEventListener("click", function(){
-//         console.log("Button Pressed")
-//         console.log(Element)
-//     })
-// })
