@@ -4,14 +4,10 @@ var startCard = document.querySelector(".start_card")
 var qCard = document.querySelector(".questions");
 var ansCard = document.querySelector(".answers");
 var cardSwitcher = document.querySelector(".start_btn");
-var ansBtn1 = document.querySelector("#btn1");
-var ansBtn2 = document.querySelector("#btn2");
-var ansBtn3 = document.querySelector("#btn3");
-var ansBtn4 = document.querySelector("#btn4");
+var ansBtn = document.getElementsByClassName("ansBtn");
 var footTxt1 = document.querySelector(".foot_txt1");
 var footTxt2 = document.querySelector(".foot_txt2");
 var timeEl = document.querySelector(".timer")
-
 
 // global variables
 var finalScore = 0;
@@ -21,23 +17,21 @@ var popupTime = 1;
 
 // Lets place the question and answers into an object
 var myArry = [
-    {question: ["What operator can you use to find the data type of a variable?"],
-    answer1:["object.property", false],
-    answer2:["this.object", false],
-    answer3:["typeof", true],
-    answer4:["propertyKey", false]
+    {question: "What operator can you use to find the data type of a variable?",
+    guessItem:["object.property", "this.object","typeof","propertyKey"],
+    answer:"typeof",
+    guess:""
     },
     {question: "What does the === operator do in JS?",
-    answer1:["compares two variables are equal", false],
-    answer2:["compares two variables and the data type and equal", true],
-    answer3:["compares two numbers are equal", false],
-    answer4:["compares two string are equal", false]
+    guessItem:["compares two variables are equal", "compares two variables and the data type and equal",
+    "compares two numbers are equal","compares two string are equal"],
+    answer:"compares two variables and the data type and equal",
+    guess:""
     },
     {question: "In JS what method is used to get an element from an html document ",
-    answer1:["setInterval()", false],
-    answer2:["appendChild()", false],
-    answer3:["getElementById()", true],
-    answer4:["setAttribute()", false]
+    guessItem:["setInterval()", "appendChild()","getElementById()","setAttribute()"],
+    answer:"getElementById()",
+    guess:""
     }
 ];
 
@@ -53,16 +47,14 @@ function setTime() {
     }, 1000)
 }
 
-
 // Let create a function that loads the questions and answers
 // insert questions and answers to buttons from object
 function loadQnA(qIndex) {
     qCard.textContent = myArry[qIndex].question;
-    ansBtn1.textContent = `1. ${myArry[qIndex].answer1[0]}`;
-    ansBtn2.textContent = `2. ${myArry[qIndex].answer2[0]}`;
-    ansBtn3.textContent = `3. ${myArry[qIndex].answer3[0]}`;
-    ansBtn4.textContent = `4. ${myArry[qIndex].answer4[0]}`;
-}
+    for (let i = 0 ; i < ansBtn.length; i++){
+        ansBtn[i].textContent = myArry[qIndex].guessItem[i];
+        }   
+    }
 
 // Function to show if answer was correct/incorrect
 function popResults(x) {
@@ -81,7 +73,7 @@ function popResults(x) {
     }, 100)
 }
 
-// Event Handlers
+// Event Handlers 
 // Start Quiz Handler
 cardSwitcher.addEventListener("click", function(){
     loadQnA(qIndex)
@@ -91,51 +83,21 @@ cardSwitcher.addEventListener("click", function(){
 }) 
 
 // Event handler selecting a answer
-ansBtn1.addEventListener("click", function(){
-    if (myArry[0].answer1[1]===false){
-        qIndex++
-        popResults(false)
-        loadQnA(qIndex)
-    }else{
-        finalScore++;
-        qIndex++
-        popResults(true)
-        loadQnA(qIndex)
-    }  
-})
-ansBtn2.addEventListener("click", function(){
-    if (myArry[0].answer2[1]===false){
-        qIndex++
-        popResults(false)
-        loadQnA(qIndex)
-    }else{
-        finalScore++;
-        qIndex++
-        popResults(true)
-        loadQnA(qIndex)
-    }  
-})
-ansBtn3.addEventListener("click", function(){
-    if (myArry[0].answer3[1]===false){
-        qIndex++
-        popResults(false)
-        loadQnA(qIndex)
-    }else{
-        finalScore++;
-        qIndex++
-        popResults(true)
-        loadQnA(qIndex)
-    }  
-})
-ansBtn4.addEventListener("click", function(){
-    if (myArry[0].answer4[1]===false){
-        qIndex++
-        popResults(false)
-        loadQnA(qIndex)
-    }else{
-        finalScore++;
-        qIndex++
-        popResults(true)
-        loadQnA(qIndex)
-    }  
-})
+for (let i = 0 ; i < ansBtn.length; i++){
+    ansBtn[i].addEventListener("click", function(event){
+        var element = event.target
+        var txt = element.textContent
+        myArry[qIndex].guess = txt
+        console.log( myArry[qIndex].guess)
+        if (myArry[qIndex].guess === myArry[qIndex].answer) {
+            qIndex++
+            finalScore++;
+            popResults(true)
+            loadQnA(qIndex)
+        }else{
+            qIndex++
+            popResults(false)
+            loadQnA(qIndex)
+        }
+    }
+)}
