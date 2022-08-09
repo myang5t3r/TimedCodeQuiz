@@ -32,6 +32,32 @@ var myArry = [
     guessItem:["setInterval()", "appendChild()","getElementById()","setAttribute()"],
     answer:"getElementById()",
     guess:""
+    },
+    {question: "Who invented JavaScript?",
+    guessItem:["Elon Musk", "Brendan Eich","Jeff Bezos","Guido van Rossum"],
+    answer:"Brendan Eich",
+    guess:""
+    },
+    {question: "When was JavaScript created?",
+    guessItem:["1995", "1991","1970","1983"],
+    answer:"1995",
+    guess:""
+    },
+    {question: "What are Higher Order Functions?",
+    guessItem:["Fuctions that operate on other functions", 
+    "A function that takes another function as an argument",
+    "a function that returns another function",
+    "All the above"],
+    answer:"All the above",
+    guess:""
+    },
+    {question: "What is recursion?",
+    guessItem:["A recurring error in your code", 
+    "A function that calls itself directly repeatedly until you get your desire result",
+    "a function that returns another function",
+    "All the above"],
+    answer:"A function that calls itself directly repeatedly until you get your desire result",
+    guess:""
     }
 ];
 
@@ -56,7 +82,7 @@ function loadQnA(qIndex) {
         }   
     }
 
-// Function to show if answer was correct/incorrect
+// Function to show if answer was correct/incorrect - NEED T0 FIX
 function popResults(x) {
     if (x === true){
         footTxt2.setAttribute("style", "display:flex;");
