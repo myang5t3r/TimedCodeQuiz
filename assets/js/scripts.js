@@ -137,7 +137,6 @@ function count(){
         endCard.setAttribute("style", "display:block")
         scoreCount()
         qIndex = 0;
-        finalScore = 0;
         console.log(qIndex)
     }else{
         loadQnA(qIndex)
@@ -150,7 +149,6 @@ function count(){
 function scoreCount(){
     console.log(`Score = ${finalScore}`)
     endScore.textContent = `Your Score: ${finalScore} out of ${myArray.length}`
-    finalScore=0;
 }
 
 // Event Handlers 
@@ -188,8 +186,15 @@ for (let i = 0 ; i < ansBtn.length; i++){
 saveScore.addEventListener("click", function(event){
     if (saveName.value === ""){
         confirm("Please Enter Name to Submit")
+    }else{
+        nameScore = saveName.value
+        localStorage.setItem("name", nameScore);
+        console.log(finalScore);
+        localStorage.setItem("score", finalScore);
+        finalScore=0;
+        console.log(finalScore)
     }
-    console.log(saveName.value)
+    
 })
 
 // Event handler to restart button at end Card
