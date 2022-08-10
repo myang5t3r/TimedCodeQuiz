@@ -13,3 +13,8 @@
 
  4) Footer sections - Lets use this section to display if the user selected the correct answers
     -if answers is correct display correct , else display incorrect     
+
+5) make an end card to display that the quiz is complete, show the score, make 
+    button to save score, and have input of initial, save to local storage for now
+
+6) After last question use queaySelector to display last card and the score

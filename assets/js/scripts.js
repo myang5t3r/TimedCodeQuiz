@@ -1,14 +1,18 @@
 // Variable declarations 
 // get elements in html
-var startCard = document.querySelector(".start_card")
+var startCard = document.querySelector(".start_card");
 var qCard = document.querySelector(".questions");
 var ansCard = document.querySelector(".answers");
 var cardSwitcher = document.querySelector(".start_btn");
 var ansBtn = document.getElementsByClassName("ansBtn");
 var footTxt1 = document.querySelector(".foot_txt1");
 var footTxt2 = document.querySelector(".foot_txt2");
-var timeEl = document.querySelector(".timer")
-var endCard = document.querySelector(".end_card")
+var timeEl = document.querySelector(".timer");
+var endCard = document.querySelector(".end_card");
+var endScore = document.querySelector(".end_score");
+var saveScore = document.getElementById("saveScore");
+var saveName = document.getElementById("inputTxt");
+var restart = document.getElementById("restart");
 
 // global variables
 var finalScore = 0;
@@ -126,14 +130,28 @@ function popResults(x) {
 };
 
 // Function for counter variable 
-function count(qIndex){
+function count(){
     if(qIndex === myArray.length){
-        alert("Done")
-    }else{
+        qCard.setAttribute("style", "display:none;")
+        ansCard.setAttribute("style", "display:none;")
+        endCard.setAttribute("style", "display:block")
+        scoreCount()
+        qIndex = 0;
+        finalScore = 0;
         console.log(qIndex)
+    }else{
+        loadQnA(qIndex)
+        // `console.log(qIndex)`
     }
 
 };
+
+// Function to to count the score and load it to the page
+function scoreCount(){
+    console.log(`Score = ${finalScore}`)
+    endScore.textContent = `Your Score: ${finalScore} out of ${myArray.length}`
+    finalScore=0;
+}
 
 // Event Handlers 
 // Start Quiz Handler
@@ -144,44 +162,38 @@ cardSwitcher.addEventListener("click", function(){
     ansCard.setAttribute("style", "display:flex;")   
 }) 
 
-// Event handler selecting a answer and 
-
+// Event handler selecting an answer and 
 for (let i = 0 ; i < ansBtn.length; i++){
     ansBtn[i].addEventListener("click", function(event){
         var element = event.target;
         var txt = element.textContent;
+        // console.log(qIndex)
         myArray[qIndex].guess = txt;
         // Add if count < length of myArray,length
         if (myArray[qIndex].guess === myArray[qIndex].answer) {
             qIndex++
-            finalScore++;
+            finalScore++
             popResults(true)
-            count(qIndex)
-            loadQnA(qIndex)
+            count()
+            
         }else{
             qIndex++
             popResults(false)
-            count(qIndex)
-            loadQnA(qIndex)
+            count()
             }
         }    
 )};
 
-// for (let i = 0 ; i < ansBtn.length; i++){
-//     ansBtn[i].addEventListener("click", function(event){
-//         var element = event.target
-//         var txt = element.textContent
-//         myArry[qIndex].guess = txt
-//         console.log( myArry[qIndex].guess)
-//         if (myArry[qIndex].guess === myArry[qIndex].answer) {
-//             qIndex++
-//             finalScore++;
-//             popResults(true)
-//             loadQnA(qIndex)
-//         }else{
-//             qIndex++
-//             popResults(false)
-//             loadQnA(qIndex)
-//         }
-//     }
-// )}
+// Event handler for submitting score and launch start card 
+saveScore.addEventListener("click", function(event){
+    if (saveName.value === ""){
+        confirm("Please Enter Name to Submit")
+    }
+    console.log(saveName.value)
+})
+
+// Event handler to restart button at end Card
+restart.addEventListener("click", function(){
+    startCard.setAttribute("style", "display:block;");
+    endCard.setAttribute("style", "display:none;");
+})
