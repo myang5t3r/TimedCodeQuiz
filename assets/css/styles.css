@@ -20,6 +20,10 @@ section{
     padding: 0 15em;
 }
 
+body{
+    width: 80%;
+}
+
 footer {
     display: flex;
     padding: 0 0;
@@ -27,7 +31,6 @@ footer {
     align-items: center;
     
 }
-
 
 /* Class Selectors */
 .header_btn{
@@ -44,14 +47,14 @@ footer {
  }
 .start_card {
     text-align: center;
-    padding: 2em 2em;
-    font-size: 3em;
+    padding: 2em 0em;
+    font-size: 4em;
     font-weight: bolder;
 }
 
 .start_p {
     margin: 0 auto;
-    padding: 2em 2em;
+    padding: 2em 0em;
     font-size: .5em;
     text-align: left ;
 }
@@ -62,6 +65,30 @@ footer {
     border-radius: .25em;
     cursor: pointer;
     background-color: lightblue;
+}
+
+.end_card {
+    display: none;
+    text-align: center;
+    padding: 2em 2em;
+    font-weight: bolder;
+}
+
+.end_p {
+    margin: 0 auto;
+    padding: 0em 2em;
+    font-size: 5em;
+    text-align: center ;
+}
+.end_score {
+    margin: 0 auto;
+    padding: 1em 0em;
+    font-size: 2em;
+    text-align: center ;
+}
+
+input[type="text"] {
+    font-size: 2em;
 }
 
 .header_btn:hover, 
