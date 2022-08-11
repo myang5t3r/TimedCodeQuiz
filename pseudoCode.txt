@@ -14,7 +14,21 @@
  4) Footer sections - Lets use this section to display if the user selected the correct answers
     -if answers is correct display correct , else display incorrect     
 
-5) make an end card to display that the quiz is complete, show the score, make 
-    button to save score, and have input of initial, save to local storage for now
-
 6) After last question use queaySelector to display last card and the score
+
+8) need timer 
+- REMOVE TIME WHEN you select the wrong is answer (done)
+- when questions are done stop timer (done)
+- if time runs out stop timmer and display score (done)
+- restart button to must restart game (Done)
+- fix score  (Done)
+
+///////// Above is done.
+
+5) make an end card to display that the quiz is complete (Done)
+-show the score (Done)
+ -make button/input to save score (Done)  
+ -save to local storage so we can send to high score card
+
+7) Add card for view high score 
+

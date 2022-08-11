@@ -10,15 +10,19 @@ var footTxt2 = document.querySelector(".foot_txt2");
 var timeEl = document.querySelector(".timer");
 var endCard = document.querySelector(".end_card");
 var endScore = document.querySelector(".end_score");
+var endScore2 = document.querySelector(".end_Score2");
 var saveScore = document.getElementById("saveScore");
 var saveName = document.getElementById("inputTxt");
 var restart = document.getElementById("restart");
+var restart2 = document.getElementById("restart2");
+var endCard2 = document.querySelector(".end_card2")
 
 // global variables
 var finalScore = 0;
 var timeLeft = 60;
 var popupTime = 1;
 var qIndex = 0;  
+finishGame = false; // use to clearInterval
 
 // Lets place the question and answers into an object
 var myArray = [
@@ -91,16 +95,35 @@ var myArray = [
     }
 ];
 
+// console.log(qIndex)
 // Timer function  - we will call this after a answers is selected  
 function setTime() {
     var timerInterval = setInterval(function(){
         timeLeft--;
-        timeEl.textContent = `Time:${timeLeft}`;
-        if(timeLeft === 0) {
+        if(timeLeft <= 0 ) {
             clearInterval(timerInterval)
-            alert("Time is over")
+            // Only Display Timeout card
+            qCard.setAttribute("style", "display:none;")
+            ansCard.setAttribute("style", "display:none;")
+            endCard2.setAttribute("style","display:block");
+            timeEl.textContent = "";
+            // Count the score with this function
+            scoreCount()
+        }else if (finishGame === true){
+            console.log("Player has finished")
+            clearInterval(timerInterval)
         }
     }, 1000)
+}
+
+// Function to show time only when we call this function
+function showTime(){
+    timeEl.textContent = `Time:${timeLeft}`;
+}
+
+// Function to tell if player is done before time is up
+function allDone(){
+    finishGame = true;
 }
 
 // Let create a function that loads the questions and answers
@@ -126,7 +149,7 @@ function popResults(x) {
             footTxt2.setAttribute("style", "display:none;");  
             clearInterval(popupTime)
         }
-    }, 100)
+    }, 75)
 };
 
 // Function for counter variable 
@@ -135,9 +158,11 @@ function count(){
         qCard.setAttribute("style", "display:none;")
         ansCard.setAttribute("style", "display:none;")
         endCard.setAttribute("style", "display:block")
+        // Count the score with this function
         scoreCount()
+        // call a function to say done so we can stop the timer
+        allDone()
         qIndex = 0;
-        console.log(qIndex)
     }else{
         loadQnA(qIndex)
         // `console.log(qIndex)`
@@ -149,12 +174,15 @@ function count(){
 function scoreCount(){
     console.log(`Score = ${finalScore}`)
     endScore.textContent = `Your Score: ${finalScore} out of ${myArray.length}`
+    endScore2.textContent = `Your Score: ${finalScore} out of ${myArray.length}`
 }
 
 // Event Handlers 
 // Start Quiz Handler
 cardSwitcher.addEventListener("click", function(){
     loadQnA(0);
+    showTime();
+    setTime();
     startCard.setAttribute("style", "display:none;")
     qCard.setAttribute("style", "display:flex;")
     ansCard.setAttribute("style", "display:flex;")   
@@ -171,34 +199,56 @@ for (let i = 0 ; i < ansBtn.length; i++){
         if (myArray[qIndex].guess === myArray[qIndex].answer) {
             qIndex++
             finalScore++
+            // Show remaining time
+            showTime()
+            // Display correct
             popResults(true)
+            // Function to count the number of cards for qIndex
             count()
             
         }else{
             qIndex++
+            // If you get answer incorrect minus 5 seconds
+            timeLeft = timeLeft -5
+            // Show remaining time
+            showTime()
+            // Display incorrect
             popResults(false)
+            // Function to count the number of cards for qIndex
             count()
-            }
+            } 
         }    
 )};
 
 // Event handler for submitting score and launch start card 
+// MAYBE USE "submit"
 saveScore.addEventListener("click", function(event){
     if (saveName.value === ""){
         confirm("Please Enter Name to Submit")
     }else{
-        nameScore = saveName.value
-        localStorage.setItem("name", nameScore);
-        console.log(finalScore);
-        localStorage.setItem("score", finalScore);
-        finalScore=0;
-        console.log(finalScore)
+        var scoreArray = [];
+        var newScore = {name:saveName.value,
+            score: finalScore};
+        scoreArray.push(newScore) 
+        console.log(scoreArray)
+        // localStorage.setItem("name", nameScore);
+        // localStorage.setItem("score", finalScore);
+        // finalScore=0;
     }
-    
+
 })
 
-// Event handler to restart button at end Card
+// Event handler to restart button at end Card Maybe use location.reload()
 restart.addEventListener("click", function(){
-    startCard.setAttribute("style", "display:block;");
-    endCard.setAttribute("style", "display:none;");
+    location.reload()
+    // startCard.setAttribute("style", "display:block;");
+    // endCard.setAttribute("style", "display:none;");
 })
+
+// Event handler to restart button when time is out use location.reload()
+restart2.addEventListener("click", function(){
+    location.reload()
+    // startCard.setAttribute("style", "display:block;");
+    // endCard.setAttribute("style", "display:none;");
+})
+

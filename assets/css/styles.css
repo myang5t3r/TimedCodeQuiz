@@ -8,7 +8,7 @@ header {
     display: flex;
     /* border: .25em solid lightblue; */
     margin:  0 auto;
-    padding: 1em 3em;
+    padding: 1em 6em;
     font-size: 1.5em;
     justify-content: space-between;
 }
@@ -21,7 +21,7 @@ section{
 }
 
 body{
-    width: 80%;
+    /* width: 80%; */
 }
 
 footer {
@@ -85,6 +85,20 @@ footer {
     padding: 2em 0em;
     font-size: 2em;
     text-align: center ;
+}
+.end_Score2 {
+    margin: 0 auto;
+    padding: 2em 0em;
+    font-size: 2em;
+    text-align: center ;
+}
+
+.end_card2 {
+    display: none;
+    text-align: center;
+    padding: 2em 0em;
+    font-size: 1em;
+    font-weight: bolder;
 }
 
 input[type="text"] {
