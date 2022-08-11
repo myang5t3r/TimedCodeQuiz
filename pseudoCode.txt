@@ -1,4 +1,4 @@
-1) Wireframe layout of html
+1) Wireframe layout of html ()
 
 2) header section  - make two containers
     - High score button - display high scores in section when you click the button
@@ -14,12 +14,12 @@
  4) Footer sections - Lets use this section to display if the user selected the correct answers
     -if answers is correct display correct , else display incorrect     
 
-6) After last question use queaySelector to display last card and the score
+6) After last question use querySelector to display last card and the score
 
 8) need timer 
 - REMOVE TIME WHEN you select the wrong is answer (done)
 - when questions are done stop timer (done)
-- if time runs out stop timmer and display score (done)
+- if time runs out stop timer and display score (done)
 - restart button to must restart game (Done)
 - fix score  (Done)
 
@@ -28,7 +28,10 @@
 5) make an end card to display that the quiz is complete (Done)
 -show the score (Done)
  -make button/input to save score (Done)  
+ -Clear input after you click (Done)
  -save to local storage so we can send to high score card
 
-7) Add card for view high score 
+
+7) Add card for view high score (Done)
+-Need to link local storage to show high score
 

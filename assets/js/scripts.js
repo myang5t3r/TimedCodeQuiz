@@ -11,10 +11,13 @@ var timeEl = document.querySelector(".timer");
 var endCard = document.querySelector(".end_card");
 var endScore = document.querySelector(".end_score");
 var endScore2 = document.querySelector(".end_Score2");
+var highScoreBtn = document.querySelector("#highScore");
+var highScoreCard = document.querySelector(".highScoreCard");
 var saveScore = document.getElementById("saveScore");
 var saveName = document.getElementById("inputTxt");
 var restart = document.getElementById("restart");
 var restart2 = document.getElementById("restart2");
+var restart3 = document.getElementById("restart3");
 var endCard2 = document.querySelector(".end_card2")
 
 // global variables
@@ -223,17 +226,25 @@ for (let i = 0 ; i < ansBtn.length; i++){
 // Event handler for submitting score and launch start card 
 // MAYBE USE "submit"
 saveScore.addEventListener("click", function(event){
+    event.preventDefault();
+    console.log("Presses Submit")
     if (saveName.value === ""){
         confirm("Please Enter Name to Submit")
     }else{
         var scoreArray = [];
         var newScore = {name:saveName.value,
             score: finalScore};
-        scoreArray.push(newScore) 
+        console.log(newScore)
+        scoreArray.push(newScore)
         console.log(scoreArray)
+        saveName.value = "" //
+        // scoreArray.push(newScore) 
+        // console.log(scoreArray)
         // localStorage.setItem("name", nameScore);
         // localStorage.setItem("score", finalScore);
         // finalScore=0;
+        // startCard.setAttribute("style", "display:block;");
+        // endCard.setAttribute("style", "display:none;");
     }
 
 })
@@ -250,5 +261,17 @@ restart2.addEventListener("click", function(){
     location.reload()
     // startCard.setAttribute("style", "display:block;");
     // endCard.setAttribute("style", "display:none;");
+})
+restart3.addEventListener("click", function(){
+    location.reload()
+    // startCard.setAttribute("style", "display:block;");
+    // endCard.setAttribute("style", "display:none;");
+})
+highScoreBtn.addEventListener("click", function(){
+    console.log("Press")
+    startCard.setAttribute("style", "display:none;");
+    endCard.setAttribute("style", "display:none;");
+    highScoreCard.setAttribute("style", "display:block;");
+    
 })
 
