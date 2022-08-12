@@ -10,7 +10,7 @@ Access to repository here:
 [Repository url](https://github.com/myang5t3r/TimedCodeQuiz)
 
 Live Deployment here:
-[https://myang5t3r.github.io/PasswordGenerator/](https://myang5t3r.github.io/TimedCodeQuiz/)
+[https://myang5t3r.github.io/TimedCodeQuiz/](https://myang5t3r.github.io/TimedCodeQuiz/)
 
 ## Usage
 The usages of this project is for informational and learning purposes only. <br>
