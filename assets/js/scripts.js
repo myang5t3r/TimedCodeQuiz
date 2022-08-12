@@ -227,24 +227,48 @@ for (let i = 0 ; i < ansBtn.length; i++){
 // MAYBE USE "submit"
 saveScore.addEventListener("click", function(event){
     event.preventDefault();
-    console.log("Presses Submit")
     if (saveName.value === ""){
         confirm("Please Enter Name to Submit")
     }else{
+        // Need condition to to check if we have anything in local storage
+        if(localStorage.getItem("score") === null){
+        // Create array to store results
         var scoreArray = [];
+        // Create object to store score
         var newScore = {name:saveName.value,
             score: finalScore};
-        console.log(newScore)
+        // Added newScore to scoreArray
         scoreArray.push(newScore)
-        console.log(scoreArray)
-        saveName.value = "" //
-        // scoreArray.push(newScore) 
-        // console.log(scoreArray)
-        // localStorage.setItem("name", nameScore);
-        // localStorage.setItem("score", finalScore);
-        // finalScore=0;
-        // startCard.setAttribute("style", "display:block;");
-        // endCard.setAttribute("style", "display:none;");
+        // Save scoreArray to local storage so we can pull it later
+        localStorage.setItem("score", JSON.stringify(scoreArray)); 
+        // Clear input field
+        saveName.value = "";
+        // Reset finalSCore
+        finalScore=0; 
+        // Change display back to 
+        location.reload()
+        }else{
+            var scoreArray = [];
+            // pull value from local storage push into scoreArray,
+            results = JSON.parse(localStorage.getItem("score"));
+            scoreArray.push(results);
+            // Create object to store score
+            var newScore = {name:saveName.value,
+            score: finalScore};
+            // Added newScore to scoreArray
+            scoreArray.push(newScore)
+            // Save scoreArray to local storage so we can pull it later
+            localStorage.setItem("score", JSON.stringify(scoreArray)); 
+            // Clear input field
+            saveName.value = "";
+            // Reset finalSCore
+            finalScore=0;
+            // Change display back to 
+            location.reload()
+        }
+        
+
+
     }
 
 })
