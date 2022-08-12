@@ -248,10 +248,8 @@ saveScore.addEventListener("click", function(event){
         // Change display back to 
         location.reload()
         }else{
-            var scoreArray = [];
-            // pull value from local storage push into scoreArray,
-            results = JSON.parse(localStorage.getItem("score"));
-            scoreArray.push(results);
+            // pull array from local storage 
+            scoreArray = JSON.parse(localStorage.getItem("score"));
             // Create object to store score
             var newScore = {name:saveName.value,
             score: finalScore};
@@ -266,9 +264,6 @@ saveScore.addEventListener("click", function(event){
             // Change display back to 
             location.reload()
         }
-        
-
-
     }
 
 })
@@ -292,10 +287,32 @@ restart3.addEventListener("click", function(){
     // endCard.setAttribute("style", "display:none;");
 })
 highScoreBtn.addEventListener("click", function(){
-    console.log("Press")
     startCard.setAttribute("style", "display:none;");
     endCard.setAttribute("style", "display:none;");
     highScoreCard.setAttribute("style", "display:block;");
+    // Condition statement if no scores added 
+    if(localStorage.getItem("score") === null){
+        // Create a p element to display that there is no data yet
+        var pTag =  document.createElement("p")
+        // Added text content and style
+        pTag.textContent = "No data yet";
+        pTag.setAttribute("style", "font-size:1em; padding: 2em 2em")
+        // Append to document
+        document.body.childNodes[3].childNodes[7].childNodes[1].appendChild(pTag)
+    }else{
+        // pull value from local storage to display on screen
+        results = JSON.parse(localStorage.getItem("score"));
+        console.log(results[0].score)
+        console.log(results.length)
+        // Loop through results array to display scores on page
+       for (let i =0; i < results.length ; i++){
+            var pTag =  document.createElement("p")
+            pTag.textContent = `${results[i].name} scored ${results[i].score}`;
+            pTag.setAttribute("style", "font-size:.5em; padding: 0 2em");
+            // Append to document
+            document.body.childNodes[3].childNodes[7].childNodes[1].appendChild(pTag);
+       }
+    }
+});
     
-})
 
